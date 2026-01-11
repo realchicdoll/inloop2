@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Coming Soon</title>
+
+<style>
+  /* BODY E BACKGROUND */
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: serif;
+    background-image: url("background.jpg"); /* Assicurati che il nome sia corretto */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* TESTO DI BENVENUTO */
+  #welcome-text {
+    font-size: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    font-family: serif;
+
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+    padding: 25px 40px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+
+    max-width: 80%;
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
+  }
+
+  /* STILE DELLA DATA */
+  #date {
+    font-size: 24px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+
+    background: rgba(255,255,255,0.7);
+    padding: 20px 30px;
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+
+    max-width: 60%;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+
+  /* Classe per animazione fade-in */
+  body.loaded #welcome-text,
+  body.loaded #date {
+    opacity: 1;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="welcome-text">
+  WE'RE SO GLAD TO HAVE YOU HERE.<br>
+  ARE YOU READY?
+</div>
+
+<div id="date"></div>
+
+<script>
+  // FUNZIONE PER GENERARE DATA CASUALE
+  function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  }
+
+  const start = new Date(2026, 1, 16); // Febbraio 16, 2026
+  const end   = new Date(2030, 11, 31);
+
+  const date = randomDate(start, end);
+
+  const options = { day: '2-digit', month: 'long', year: 'numeric' };
+  document.getElementById("date").innerText =
+    date.toLocaleDateString('en-GB', options);
+
+  // Attiva le animazioni fade-in
+  window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+  });
+</script>
+
+</body>
+</html>
 
